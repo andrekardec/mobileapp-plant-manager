@@ -6,7 +6,7 @@ import {
     View
 } from 'react-native';
 
-import {Button} from '../components/Button';
+import { Button } from '../components/Button';
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
@@ -28,7 +28,9 @@ export function Confirmation() {
                 </Text>
 
                 <View style={styles.footer}>
-                    <Button/>
+                    <Button
+                        title="Começar"
+                    />
                 </View>
             </View>
         </SafeAreaView>

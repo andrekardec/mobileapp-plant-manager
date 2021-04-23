@@ -7,7 +7,7 @@ import {
   Jost_600SemiBold
 } from '@expo-google-fonts/jost';
 
-import {Confirmation} from "./src/pages/Confirmation";
+import Routes from './src/routes'
 
 
 export default function App() {
@@ -20,6 +20,6 @@ export default function App() {
     return <AppLoading/>
 
   return (
-      <Confirmation />
+      <Routes />
   )
 }
