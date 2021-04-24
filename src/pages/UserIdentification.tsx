@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 import {
     SafeAreaView,
@@ -9,11 +9,13 @@ import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
     Platform,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native';
 
-import { Button } from '../components/Button';
-import { useNavigation } from "@react-navigation/core";
+import {Button} from '../components/Button';
+import {useNavigation} from "@react-navigation/core";
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 import colors from "../styles/colors";
@@ -42,8 +44,17 @@ export function UserIdentification() {
         setName(value);
     }
 
-    function handleSubmit() {
-        navigation.navigate('Confirmation');
+    async function handleSubmit() {
+
+        if (!name)
+            return Alert.alert('Me diz como chamar você 😢');
+
+        try {
+            await AsyncStorage.setItem('@plantmanager:user', name);
+            navigation.navigate('Confirmation');
+        } catch {
+            Alert.alert('Não foi possível salvar o seu nome. 😢');
+        }
     }
 
     return (
@@ -62,15 +73,15 @@ export function UserIdentification() {
 
                                 <Text style={styles.title}>
                                     Como podemos{'\n'}
-                                chamar você?
-                            </Text>
+                                    chamar você?
+                                </Text>
                             </View>
 
                             <TextInput
                                 style={[
                                     styles.input,
                                     (isFocused || isFilled) &&
-                                    { borderColor: colors.green }
+                                    {borderColor: colors.green}
                                 ]}
                                 placeholder="Digite um nome"
                                 onBlur={handleInputBlur}
@@ -89,7 +100,7 @@ export function UserIdentification() {
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
-        </SafeAreaView >
+        </SafeAreaView>
     )
 }
 
