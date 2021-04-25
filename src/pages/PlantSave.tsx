@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     plantInfo: {
         flex: 1,
         paddingHorizontal: 30,
-        paddingVertical: 50,
+        marginVertical: 120,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.shape
